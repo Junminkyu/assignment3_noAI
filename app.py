@@ -44,7 +44,7 @@ CHECK_QUESTIONS = [
     },
     {
         "name": "sarcasm_data",
-        "prompt": "What data do you need to evaluate for sarcasm?",
+        "prompt": "Which text in the image are you being asked to evaluate for sarcasm?",
         "answer": "comment",
     },
 ]
