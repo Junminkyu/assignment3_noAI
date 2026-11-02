@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<main class="page">
+  <p class="title">Before you begin</p>
+  <section class="panel">
+    <p>You will read the <span class="instruction-parent-comment">parent comment</span> and <span class="instruction-comment">comment</span> from ten Reddit posts. To provide more context, we also provide the <span class="instruction-channel">channel name</span>. For each post, read carefully and choose whether the <span class="instruction-comment">comment</span> shown in green is sarcastic or not sarcastic.</p>
+    <p>Please use your best judgment and answer every question before submitting your labels.</p>
+    <img class="tutorial-image" src="{{ url_for('static', filename='pic/tutorial.png') }}" alt="Example comment-labeling screen showing the subreddit, parent comment, comment, and sarcastic-label choices">
+    <form action="{{ url_for('check') }}" method="get">
+      <button type="submit">Continue to check</button>
+    </form>
+  </section>
+</main>
+{% endblock %}

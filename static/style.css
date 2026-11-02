@@ -1,0 +1,69 @@
+:root {
+  --ink: #ffcb05;
+  --muted: #ffcb05;
+  --paper: #00274c;
+  --surface: #00274c;
+  --accent: #ffcb05;
+  --accent-soft: #123a5c;
+  --border: #ffcb05;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: system-ui, sans-serif;
+}
+
+.page { width: min(100% - 32px, 760px); margin: 0 auto; padding: 64px 0; }
+.title { margin: 0 0 10px; color: var(--accent); font-size: 1.75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.page > h1.title { font-size: 1.75rem; letter-spacing: 0; line-height: 1.05; text-transform: none; }
+h1 { margin: 0 0 18px; font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.05; }
+.intro { max-width: 620px; color: var(--muted); font-size: 1.08rem; line-height: 1.65; }
+
+.panel, .table-wrap { margin-top: 28px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); box-shadow: 0 12px 32px rgb(28 48 55 / 8%); }
+.panel { padding: clamp(24px, 5vw, 40px); background: #fff; color: var(--paper); }
+.enrollment-form > label + label { margin-top: 20px; }
+.tutorial-image { display: block; width: 100%; height: auto; margin: 24px 0 0; border: 1px solid var(--border); border-radius: 6px; }
+.instruction-parent-comment { color: #1d4ed8; font-weight: 700; }
+.instruction-comment { color: #15803d; font-weight: 700; }
+.instruction-channel { color: #7e22ce; font-weight: 700; }
+.completion-panel { max-width: 540px; border-top-width: 8px; }
+.completion-panel h1 { margin-bottom: 12px; }
+.completion-panel p { margin: 0; font-size: 1.08rem; line-height: 1.6; }
+
+label { display: grid; gap: 9px; font-size: .9rem; font-weight: 700; }
+input, select { width: 100%; border: 1px solid var(--border); border-radius: 5px; color: var(--paper); font: inherit; padding: 12px; }
+input:focus, select:focus { border-color: var(--accent); outline: 3px solid rgb(255 203 5 / 35%); }
+button { min-height: 44px; margin-top: 24px; border: 0; border-radius: 5px; background: var(--accent); color: var(--paper); cursor: pointer; font: 700 .95rem system-ui, sans-serif; padding: 0 20px; }
+button:hover { background: #e0b000; }
+
+.progress { height: 7px; overflow: hidden; border-radius: 4px; background: #123a5c; }
+.progress span { display: block; height: 100%; background: var(--accent); }
+.comment-context { margin-bottom: 30px; }
+.subreddit { margin: 0 0 16px; color: var(--accent-soft); font-size: .95rem; font-weight: 700; }
+.parent-comment { margin: 0; color: #445463; font-size: 1rem; line-height: 1.5; }
+blockquote { margin: 16px 0 0 22px; border-left: 4px solid var(--accent); font-size: clamp(1.25rem, 3vw, 1.6rem); line-height: 1.5; padding-left: 22px; }
+fieldset { margin: 0; border: 0; padding: 0; }
+.check-question { margin-top: 24px; }
+.check-question .label-grid { grid-template-columns: 1fr; }
+.check-question .label-choice { justify-content: flex-start; padding: 16px; text-align: left; }
+legend { margin-bottom: 14px; font-size: .95rem; font-weight: 700; }
+.label-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.label-choice { min-height: 60px; border: 1px solid var(--border); border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.label-choice input { width: auto; margin: 0 8px 0 0; accent-color: var(--accent); }
+.label-choice:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); color: var(--ink); }
+
+.error { color: red; font-size: .9rem; font-weight: 700; }
+table { width: 100%; border-collapse: collapse; }
+th, td { border-bottom: 1px solid #2c5578; padding: 14px; text-align: left; vertical-align: top; }
+th { background: #123a5c; font-size: .76rem; letter-spacing: .05em; text-transform: uppercase; }
+td:nth-child(2) { min-width: 280px; line-height: 1.45; }
+.table-wrap { overflow-x: auto; }
+
+@media (max-width: 560px) {
+  .page { width: min(100% - 24px, 760px); padding: 40px 0; }
+  .panel { padding: 22px; }
+}

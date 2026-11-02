@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<main class="page">
+  <p class="title">Collected data</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Participant</th>
+          <th>Born in US</th>
+          <th>Reddit ID</th>
+          <th>Subreddit</th>
+          <th>Parent comment</th>
+          <th>Comment</th>
+          <th>Dataset label</th>
+          <th>Participant label</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for submission in submissions %}
+        <tr>
+          <td>{{ submission.participant_id }}</td>
+          <td>{% if submission.born_in_us is none %}Not recorded{% elif submission.born_in_us %}Yes{% else %}No{% endif %}</td>
+          <td>{{ submission.reddit_id }}</td>
+          <td>/{{ submission.subreddit }}</td>
+          <td>{{ submission.parent_comment }}</td>
+          <td>{{ submission.comment_text }}</td>
+          <td>{{ labels[submission.dataset_label] }}</td>
+          <td>{{ labels[submission.selected_label] }}</td>
+        </tr>
+        {% else %}
+        <tr><td colspan="8">No submissions recorded yet.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</main>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<main class="page">
+  <p class="title">Check your understanding</p>
+  <section class="panel">
+    <p>Before you start the task, we want to make sure you understand the instructions correctly.</p>
+    <p>Use the example below to answer all four questions correctly before beginning the task.</p>
+    <img class="tutorial-image" src="{{ url_for('static', filename='pic/quiz.png') }}" alt="Example comment-labeling screen showing the nexus6 channel name, a parent comment about charging a battery, and a comment recommending the ampere program">
+    <form method="post">
+      {% for question in questions %}
+      <fieldset class="check-question">
+        <legend>{{ question.prompt }}</legend>
+        <div class="label-grid">
+          {% for option in options %}
+          <label class="label-choice"><input type="radio" name="{{ question.name }}" value="{{ option.value }}" {% if selected_answers.get(question.name) == option.value %}checked{% endif %} required><span>{{ option.label }}</span></label>
+          {% endfor %}
+        </div>
+      </fieldset>
+      {% endfor %}
+      {% if error %}<p class="error">{{ error }}</p>{% endif %}
+      <button type="submit">Begin task</button>
+    </form>
+  </section>
+</main>
+{% endblock %}

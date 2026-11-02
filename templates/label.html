@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<main class="page">
+  <p class="title">Comment {{ position + 1 }} of {{ total }}</p>
+  <div class="progress"><span style="width: {{ ((position + 1) / total) * 100 }}%"></span></div>
+  <form class="panel" method="post">
+    <section class="comment-context" aria-label="Reddit conversation context">
+      <p class="subreddit">/{{ comment.subreddit }}</p>
+      <p class="parent-comment">{{ comment.parent_comment }}</p>
+      <blockquote>{{ comment.comment }}</blockquote>
+    </section>
+    <fieldset>
+      <legend>Is this comment sarcastic?</legend>
+      <div class="label-grid">
+        {% for label in labels %}
+        <label class="label-choice"><input type="radio" name="selected_label" value="{{ loop.index0 }}" required><span>{{ label }}</span></label>
+        {% endfor %}
+      </div>
+    </fieldset>
+    <button type="submit">{% if position == total - 1 %}Submit labels{% else %}Next comment{% endif %}</button>
+    {% if error %}<p class="error">{{ error }}</p>{% endif %}
+  </form>
+</main>
+{% endblock %}
