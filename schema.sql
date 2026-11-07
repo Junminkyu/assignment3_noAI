@@ -15,5 +15,5 @@ CREATE TABLE IF NOT EXISTS submissions (
     subreddit TEXT NOT NULL,
     dataset_label INTEGER NOT NULL,
     selected_label INTEGER NOT NULL,
-    born_in_us BOOLEAN NOT NULL
+    native BOOLEAN NOT NULL
 );

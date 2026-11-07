@@ -7,7 +7,7 @@
       <thead>
         <tr>
           <th>Participant</th>
-          <th>Born in US</th>
+          <th>Native English</th>
           <th>Reddit ID</th>
           <th>Subreddit</th>
           <th>Parent comment</th>
@@ -20,7 +20,7 @@
         {% for submission in submissions %}
         <tr>
           <td>{{ submission.participant_id }}</td>
-          <td>{% if submission.born_in_us is none %}Not recorded{% elif submission.born_in_us %}Yes{% else %}No{% endif %}</td>
+          <td>{% if submission.native is none %}Not recorded{% elif submission.native %}Yes{% else %}No{% endif %}</td>
           <td>{{ submission.reddit_id }}</td>
           <td>/{{ submission.subreddit }}</td>
           <td>{{ submission.parent_comment }}</td>

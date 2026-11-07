@@ -10,7 +10,7 @@ The `comments` database table stores each record's `reddit_id`, `label`,
 Each `submissions` row stores the participant ID, the full Reddit context
 (`reddit_id`, `subreddit`, `parent_comment`, and `comment_text`), the original
 dataset label (`dataset_label`), the participant's selected label, and whether
-the participant was born in the United States (`born_in_us`).
+English is the participant's native language (`native`).
 
 ## Run locally
 

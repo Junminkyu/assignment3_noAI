@@ -71,12 +71,7 @@ def initialize_database():
                 label INTEGER NOT NULL
             );
         """)
-        connection.execute(
-            "ALTER TABLE comments ADD COLUMN IF NOT EXISTS parent_comment TEXT"
-        )
-        connection.execute(
-            "ALTER TABLE comments ADD COLUMN IF NOT EXISTS subreddit TEXT"
-        )
+        
         connection.execute("""
             CREATE TABLE IF NOT EXISTS submissions (
                 id SERIAL PRIMARY KEY,
@@ -87,21 +82,10 @@ def initialize_database():
                 subreddit TEXT NOT NULL,
                 dataset_label INTEGER NOT NULL,
                 selected_label INTEGER NOT NULL,
-                born_in_us BOOLEAN NOT NULL
+                native BOOLEAN NOT NULL
             );
         """)
-        connection.execute(
-            "ALTER TABLE submissions ADD COLUMN IF NOT EXISTS parent_comment TEXT"
-        )
-        connection.execute(
-            "ALTER TABLE submissions ADD COLUMN IF NOT EXISTS subreddit TEXT"
-        )
-        connection.execute(
-            "ALTER TABLE submissions ADD COLUMN IF NOT EXISTS dataset_label INTEGER"
-        )
-        connection.execute(
-            "ALTER TABLE submissions ADD COLUMN IF NOT EXISTS born_in_us BOOLEAN"
-        )
+       
         connection.execute("""
             UPDATE submissions AS submission
             SET
@@ -150,14 +134,14 @@ def home():
 @app.post("/start")
 def start_task():
     participant_id = request.form.get("participant_id", "").strip()
-    born_in_us = request.form.get("born_in_us")
+    native = request.form.get("native")
     if not participant_id:
         return render_template("home.html", error="Enter a participant ID to begin."), 400
-    if born_in_us not in {"yes", "no"}:
+    if native not in {"yes", "no"}:
         return render_template(
             "home.html",
             participant_id=participant_id,
-            error="Select whether you were born in the United States to begin.",
+            error="Select whether English is your native language to begin.",
         ), 400
 
     with database_connection() as connection:
@@ -169,7 +153,7 @@ def start_task():
             return render_template(
                 "home.html",
                 participant_id=participant_id,
-                born_in_us=born_in_us,
+                native=native,
                 error="This username has already been used. Enter a different username.",
             ), 400
 
@@ -185,7 +169,7 @@ def start_task():
 
     session.clear()
     session["participant_id"] = participant_id
-    session["born_in_us"] = born_in_us == "yes"
+    session["native"] = native == "yes"
     session["comments"] = [dict(comment) for comment in comments]
     session["answers"] = {}
     session["index"] = 0
@@ -268,7 +252,7 @@ def label_comment():
                             subreddit,
                             dataset_label,
                             selected_label,
-                            born_in_us
+                            native
                         ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
                         """,
                         [
@@ -280,7 +264,7 @@ def label_comment():
                                 comment["subreddit"],
                                 comment["label"],
                                 answers[comment["reddit_id"]],
-                                session["born_in_us"],
+                                session["native"],
                             )
                             for comment in comments
                         ],
@@ -315,7 +299,7 @@ def results():
                 comment_text,
                 dataset_label,
                 selected_label,
-                born_in_us
+                native
             FROM submissions
             """
         ).fetchall()
