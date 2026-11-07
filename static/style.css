@@ -63,7 +63,22 @@ th { background: #123a5c; font-size: .76rem; letter-spacing: .05em; text-transfo
 td:nth-child(2) { min-width: 280px; line-height: 1.45; }
 .table-wrap { overflow-x: auto; }
 
+.page.results-page { width: calc(100% - 32px); }
+.results-table { table-layout: fixed; }
+.results-table th, .results-table td { overflow-wrap: anywhere; padding: 10px 8px; }
+.results-table th { font-size: .68rem; letter-spacing: .02em; }
+.results-table td { font-size: .85rem; line-height: 1.4; }
+.results-table td:nth-child(2) { min-width: 0; }
+.results-table-wrap { overflow-x: hidden; }
+.participant-column { width: 10%; }
+.native-column { width: 8%; }
+.reddit-id-column { width: 10%; }
+.subreddit-column { width: 8%; }
+.parent-comment-column, .comment-column { width: 24%; }
+.label-column { width: 8%; }
+
 @media (max-width: 560px) {
   .page { width: min(100% - 24px, 760px); padding: 40px 0; }
+  .page.results-page { width: calc(100% - 24px); }
   .panel { padding: 22px; }
 }

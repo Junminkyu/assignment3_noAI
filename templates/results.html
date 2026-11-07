@@ -1,9 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
-<main class="page">
+<main class="page results-page">
   <p class="title">Collected data</p>
-  <div class="table-wrap">
-    <table>
+  <div class="table-wrap results-table-wrap">
+    <table class="results-table">
+      <colgroup>
+        <col class="participant-column">
+        <col class="native-column">
+        <col class="reddit-id-column">
+        <col class="subreddit-column">
+        <col class="parent-comment-column">
+        <col class="comment-column">
+        <col class="label-column">
+        <col class="label-column">
+      </colgroup>
       <thead>
         <tr>
           <th>Participant</th>
