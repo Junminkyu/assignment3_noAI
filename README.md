@@ -27,20 +27,13 @@ English is the participant's native language (`native`).
    pip install -r requirements.txt
    ```
 
-3. Configure the required environment variables:
-
-   ```bash
-   export SECRET_KEY="replace-with-a-random-secret"
-   export DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE"
-   ```
-
-4. Start the development server:
+3. Start the development server:
 
    ```bash
    flask --app app run --debug
    ```
 
-5. Open `http://127.0.0.1:5000` in a browser.
+4. Open `http://127.0.0.1:5000` in a browser.
 
 ## Checking results
 
